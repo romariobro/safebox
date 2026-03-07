@@ -1,22 +1,866 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safebox Landing Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safebox - Аварийная аптечка</title>
+  <style>
+    :root {
+      --red: #e53935;
+      --orange: #ff8a00;
+      --blue: #2f80ed;
+      --green: #27ae60;
+      --purple: #8e44ad;
+      --yellow: #f2c94c;
+      --dark: #222222;
+      --gray: #f7f7f7;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section { padding: 88px 0; }
+    .section.gray { background: var(--gray); }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      background: rgba(229,57,53,.08);
+      color: var(--red);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .02em;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+    h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .lead {
+      font-size: clamp(18px, 2vw, 22px);
+      color: #404040;
+      max-width: 780px;
+    }
+    .muted { color: var(--muted); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--red);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(229,57,53,.22);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--red);
+      border: 1px solid rgba(229,57,53,.2);
+    }
+
+    .hero {
+      padding: 70px 0 60px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 42px;
+      align-items: center;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 30px;
+    }
+    .point {
+      background: var(--gray);
+      border-radius: 16px;
+      padding: 18px;
+      font-weight: 700;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+    }
+
+    .box-visual {
+      position: relative;
+      background: linear-gradient(180deg, #fff 0%, #f6f6f6 100%);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .box-lid {
+      background: var(--white);
+      border: 2px solid rgba(229,57,53,.14);
+      border-radius: 22px;
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+    }
+    .box-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .box-sub {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .box-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .cell {
+      border-radius: 18px;
+      color: white;
+      min-height: 98px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 -24px 50px rgba(0,0,0,.12);
+    }
+    .cell .name {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .cell .desc {
+      font-size: 13px;
+      font-weight: 600;
+      opacity: .92;
+    }
+    .red { background: var(--red); }
+    .orange { background: var(--orange); }
+    .blue { background: var(--blue); }
+    .green { background: var(--green); }
+    .purple { background: var(--purple); }
+    .yellow { background: #d4a908; color: #fff; }
+    .black { background: #222; }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 34px;
+      align-items: start;
+    }
+    .danger-card, .timeline-card {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .danger-list, .feature-list, .simple-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .danger-item, .feature-item, .simple-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,.06);
+      font-weight: 700;
+    }
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .timeline-step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: #fff7f7;
+      border: 1px solid rgba(229,57,53,.12);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .time-badge {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: var(--red);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.05;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .mock-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .stack-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--gray);
+      padding: 16px 18px;
+      border-radius: 16px;
+      font-weight: 700;
+    }
+    .dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .state-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .state-top {
+      padding: 18px 20px;
+      color: white;
+      font-weight: 900;
+      font-size: 20px;
+    }
+    .state-body {
+      padding: 22px 20px 20px;
+    }
+    .drug {
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.15;
+      margin-top: 14px;
+    }
+    .drug:first-child { margin-top: 0; }
+    .drug-desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .steps {
+      display: grid;
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: white;
+      padding: 16px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .step-num {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: var(--red);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 34px;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      min-height: 430px;
+    }
+    .product-card.featured {
+      border: 2px solid rgba(229,57,53,.2);
+      transform: translateY(-6px);
+    }
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      background: rgba(229,57,53,.08);
+      color: var(--red);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+    .price {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 18px 0;
+    }
+    .product-card .btn { margin-top: auto; }
+
+    .story-box {
+      background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+      border: 1px solid rgba(229,57,53,.12);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    .story-quote {
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .forwho-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .who-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+      padding: 24px;
+      text-align: center;
+      font-weight: 800;
+      min-height: 160px;
+      display: grid;
+      place-items: center;
+    }
+    .who-card span {
+      display: block;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .cta {
+      background: var(--red);
+      color: white;
+      text-align: center;
+    }
+    .cta .btn-primary {
+      background: white;
+      color: var(--red);
+      box-shadow: none;
+    }
+
+    footer {
+      padding: 24px 0 48px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .problem-grid,
+      .solution-grid,
+      .how-grid,
+      .states-grid,
+      .products-grid,
+      .forwho-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-points { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .section { padding: 66px 0; }
+      .hero-grid,
+      .problem-grid,
+      .solution-grid,
+      .how-grid,
+      .states-grid,
+      .products-grid,
+      .forwho-grid {
+        grid-template-columns: 1fr;
+      }
+      .box-grid { grid-template-columns: 1fr; }
+      .container { width: min(var(--container), calc(100% - 24px)); }
+      .hero { padding-top: 44px; }
+      .danger-card, .timeline-card, .mock-card, .story-box, .product-card { padding: 22px; }
+      .price { font-size: 34px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Safebox website!</h1>
-    </header>
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>This is the landing page of our amazing website.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Company Name. All rights reserved.</p>
-    </footer>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-badge">📦</div>
+        <div>Safebox</div>
+      </div>
+      <div class="nav-links">
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#states">Состояния</a>
+        <a href="#products">Продукты</a>
+        <a href="#story">История</a>
+      </div>
+      <a class="btn btn-primary" href="#products">Собрать Safebox</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Safebox - Первые 3–5 минут</div>
+        <h1>Аварийная аптечка, которая подскажет что ��елать до приезда скорой помощи</h1>
+        <p class="lead">Лекарства разложены по критическим ситуациям. Нужное можно найти за 3 секунды. Крупные названия, понятные сценарии, QR-видео и порядок действий в стрессовой ситуации.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">Собрать свой Safebox</a>
+          <a class="btn btn-secondary" href="#states">Посмотреть состав</a>
+        </div>
+        <div class="hero-points">
+          <div class="point">🕐 3 секунды на поиск нужного раздела</div>
+          <div class="point">📋 Крупные инструкции и названия препаратов</div>
+          <div class="point">🎥 QR-код на видео для каждого сценария</div>
+        </div>
+      </div>
+
+      <div class="box-visual">
+        <div class="box-lid">
+          <div class="box-title">SAFEBOX EMERGENCY KIT</div>
+          <div class="box-sub">Аптечка первых минут до приезда скорой</div>
+        </div>
+        <div class="box-grid">
+          <div class="cell red">
+            <div class="name">🔴 Анафилаксия</div>
+            <div class="desc">Супрастин · Преднизолон · Адреналин</div>
+          </div>
+          <div class="cell orange">
+            <div class="name">🟠 Аллергия</div>
+            <div class="desc">Зиртек · Супрастин</div>
+          </div>
+          <div class="cell blue">
+            <div class="name">🔵 Отравление</div>
+            <div class="desc">Энтеросгель · Смекта · Регидрон</div>
+          </div>
+          <div class="cell green">
+            <div class="name">🟢 Рвота</div>
+            <div class="desc">Церукал · Домперидон</div>
+          </div>
+          <div class="cell purple">
+            <div class="name">🟣 Температура</div>
+            <div class="desc">Парацетамол · Ибупрофен</div>
+          </div>
+          <div class="cell yellow">
+            <div class="name">🟡 Спазмы</div>
+            <div class="desc">Но-шпа · Спазмалгон</div>
+          </div>
+          <div class="cell black" style="grid-column: 1 / -1; min-height: 88px;">
+            <div class="name">⚫ Потеря сознания</div>
+            <div class="desc">Аммиак · Глюкоза</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problem" class="section gray">
+    <div class="container problem-grid">
+      <div>
+        <div class="eyebrow">Почему это важно</div>
+        <h2>Критические состояния развиваются быстро и неожиданно</h2>
+        <p class="lead">Помощь иногда нужна человеку срочно в течение 3–5 минут. Где бы вы ни были — дома, на даче, в машине, в путешествии — скорая физически не успеет доехать за это время.</p>
+        <div class="danger-list">
+          <div class="danger-item">Аллергическая реакция и отек</div>
+          <div class="danger-item">Удушье и резкое ухудшение дыхания</div>
+          <div class="danger-item">Рвота, обезвоживание, отравление</div>
+          <div class="danger-item">Высокая температура и спазмы</div>
+          <div class="danger-item">Потеря сознания и резкая слабость</div>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <h3 style="font-size: 30px; line-height: 1.15;">Что обычно происходит дома</h3>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="time-badge">0–1<br>мин</div>
+            <div><strong>Паника.</strong> Человек теряется и не понимает, что происходит.</div>
+          </div>
+          <div class="timeline-step">
+            <div class="time-badge">1–3<br>мин</div>
+            <div><strong>Поиск лекарств.</strong> Никто не помнит, где что лежит и что именно нужно.</div>
+          </div>
+          <div class="timeline-step">
+            <div class="time-badge">3–5<br>мин</div>
+            <div><strong>Риск ухудшения.</strong> В критических сценариях это уже может быть слишком поздно.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution" class="section">
+    <div class="container solution-grid">
+      <div class="mock-card">
+        <div class="eyebrow">Решение</div>
+        <h2>Структурированная Safebox для критических ситуаций</h2>
+        <p class="lead">Каждое состояние имеет свой цветной раздел. Внутри — только нужные препараты, крупное название и краткий сценарий применения.</p>
+        <div class="stack">
+          <div class="stack-card"><span class="dot" style="background: var(--red);"></span> Крупные названия препаратов</div>
+          <div class="stack-card"><span class="dot" style="background: var(--orange);"></span> Инструкции по шагам</div>
+          <div class="stack-card"><span class="dot" style="background: var(--blue);"></span> Отдельные разделы по сценариям</div>
+          <div class="stack-card"><span class="dot" style="background: var(--green);"></span> QR-коды на короткие видео</div>
+        </div>
+      </div>
+
+      <div class="box-visual">
+        <div class="box-lid">
+          <div class="box-title">Как это выглядит внутри</div>
+          <div class="box-sub">Секции с цветовой кодировкой и понятной навигацией</div>
+        </div>
+        <div class="box-grid">
+          <div class="cell red"><div class="name">🔴 Анафилаксия</div><div class="desc">Опасная аллергическая реакция</div></div>
+          <div class="cell orange"><div class="name">🟠 Аллергия</div><div class="desc">Сыпь, отек, реакция на еду или препарат</div></div>
+          <div class="cell blue"><div class="name">🔵 Отравление</div><div class="desc">Интоксикация, диарея, обезвоживание</div></div>
+          <div class="cell green"><div class="name">🟢 Рвота</div><div class="desc">Тошнота и противорвотные препараты</div></div>
+          <div class="cell purple"><div class="name">🟣 Температура</div><div class="desc">Жаропонижающее</div></div>
+          <div class="cell yellow"><div class="name">🟡 Спазмы</div><div class="desc">Спазмолитики и болевой синдром</div></div>
+          <div class="cell black" style="grid-column: 1 / -1;"><div class="name">⚫ Потеря сознания</div><div class="desc">Обморок, резкая слабость</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="states" class="section gray">
+    <div class="container">
+      <div class="eyebrow">Критические состояния</div>
+      <h2>7 сценариев, которые Safebox должна закрывать дома</h2>
+      <p class="lead">По лекарствам — только крупные названия и от чего они. Без перегруженных инструкций на экране.</p>
+
+      <div class="states-grid">
+        <div class="state-card">
+          <div class="state-top red">🔴 Анафилаксия</div>
+          <div class="state-body">
+            <div class="drug">Супрастин</div>
+            <div class="drug-desc">против сильной аллергической реакции</div>
+            <div class="drug">Преднизолон</div>
+            <div class="drug-desc">против тяжелой аллергии и отека</div>
+            <div class="drug">Адреналин</div>
+            <div class="drug-desc">при опасной аллергической реакции</div>
+          </div>
+        </div>
+
+        <div class="state-card">
+          <div class="state-top orange">🟠 Аллергия</div>
+          <div class="state-body">
+            <div class="drug">Зиртек</div>
+            <div class="drug-desc">против аллергии и отека</div>
+            <div class="drug">Супрастин</div>
+            <div class="drug-desc">при острой аллергической реакции</div>
+          </div>
+        </div>
+
+        <div class="state-card">
+          <div class="state-top blue">🔵 Отравление</div>
+          <div class="state-body">
+            <div class="drug">Энтеросгель</div>
+            <div class="drug-desc">при пищевом отравлении</div>
+            <div class="drug">Смекта</div>
+            <div class="drug-desc">при интоксикации и диарее</div>
+            <div class="drug">Регидрон</div>
+            <div class="drug-desc">восстанавливает воду и соли</div>
+          </div>
+        </div>
+
+        <div class="state-card">
+          <div class="state-top green">🟢 Рвота</div>
+          <div class="state-body">
+            <div class="drug">Церукал</div>
+            <div class="drug-desc">останавливает рвоту</div>
+            <div class="drug">Домперидон</div>
+            <div class="drug-desc">против тошноты и рвоты</div>
+          </div>
+        </div>
+
+        <div class="state-card">
+          <div class="state-top purple">🟣 Температура</div>
+          <div class="state-body">
+            <div class="drug">Парацетамол</div>
+            <div class="drug-desc">снижает температуру</div>
+            <div class="drug">Ибупрофен</div>
+            <div class="drug-desc">жаропонижающее и противовоспалительное</div>
+          </div>
+        </div>
+
+        <div class="state-card">
+          <div class="state-top yellow">🟡 Спазмы</div>
+          <div class="state-body">
+            <div class="drug">Но-шпа</div>
+            <div class="drug-desc">снимает спа��мы</div>
+            <div class="drug">Спазмалгон</div>
+            <div class="drug-desc">против спазмов и боли</div>
+          </div>
+        </div>
+
+        <div class="state-card" style="grid-column: 1 / -1;">
+          <div class="state-top black">⚫ Потеря сознания</div>
+          <div class="state-body">
+            <div class="drug">Аммиак</div>
+            <div class="drug-desc">приведение в сознание</div>
+            <div class="drug">Глюкоза</div>
+            <div class="drug-desc">при слабости и гипогликемии</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container how-grid">
+      <div>
+        <div class="eyebrow">Как пользоваться Safebox</div>
+        <h2>Простой алгоритм в стрессовой ситуации</h2>
+        <p class="lead">Не нужно вспоминать десятки инструкций. Логика одна: определить состояние, открыть нужный раздел, выполнить действия по шагам.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div><strong>Оценить состояние.</strong><br><span class="muted">Что происходит: аллергия, рвота, температура, спазмы, обморок.</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div><strong>Открыть нужный раздел.</strong><br><span class="muted">Цветная навигация и крупные названия помогают найти нужное за секунды.</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div><strong>Следовать инструкции.</strong><br><span class="muted">На карточке и по QR-видео — понятный сценарий действий.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mock-card">
+        <h3 style="font-size: 28px; margin-bottom: 16px;">Идеальный дизайн Safebox</h3>
+        <div class="feature-list">
+          <div class="feature-item">Белый или светло-серый корпус — ощущение чистоты и доверия</div>
+          <div class="feature-item">Цветные секции внутри — мгновенная навигация по состояниям</div>
+          <div class="feature-item">Крупные стикеры — видно даже в панике</div>
+          <div class="feature-item">Минимум текста на коробке — максимум читаемости</div>
+          <div class="feature-item">QR-код на каждом разделе — быстрый переход к видео</div>
+          <div class="feature-item">Форм-фактор органайзера — удобно хранить дома, в машине, на даче</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="section gray">
+    <div class="container">
+      <div class="eyebrow">Линейка Safebox</div>
+      <h2>Три версии для разного бюджета и уровня готовности</h2>
+      <p class="lead">Логика лестницы продукта: сначала методичка, затем DIY-версия, затем премиальный бокс с разделителями и дизайном.</p>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="tag">Старт</div>
+          <h3 style="font-size: 30px; margin-bottom: 8px;">Методичка</h3>
+          <p class="muted">PDF-инструкция по сборке домашней Safebox для критических ситуаций.</p>
+          <div class="simple-list">
+            <div class="simple-item">Список препаратов</div>
+            <div class="simple-item">От чего каждый препарат</div>
+            <div class="simple-item">Понятная структура разделов</div>
+          </div>
+          <div class="price">490 ₽</div>
+          <a class="btn btn-primary" href="#cta">Выбрать</a>
+        </div>
+
+        <div class="product-card featured">
+          <div class="tag">Оптимально</div>
+          <h3 style="font-size: 30px; margin-bottom: 8px;">DIY Safebox</h3>
+          <p class="muted">Картонная коробка, которую пользователь собирает сам и комплектует препаратами.</p>
+          <div class="simple-list">
+            <div class="simple-item">Коробка и разделители</div>
+            <div class="simple-item">Крупные наклейки по состояниям</div>
+            <div class="simple-item">Список препаратов и карточки</div>
+          </div>
+          <div class="price">1990 ₽</div>
+          <a class="btn btn-primary" href="#cta">Выбрать</a>
+        </div>
+
+        <div class="product-card">
+          <div class="tag">Премиум</div>
+          <h3 style="font-size: 30px; margin-bottom: 8px;">Премиум Safebox</h3>
+          <p class="muted">Пластиковый органайзер с зонами, стикерами, QR и готовой логикой хранения.</p>
+          <div class="simple-list">
+            <div class="simple-item">Разделенные секции</div>
+            <div class="simple-item">Крупные названия и навигация</div>
+            <div class="simple-item">QR-коды на видео по каждому сценарию</div>
+          </div>
+          <div class="price">4990 ₽</div>
+          <a class="btn btn-primary" href="#cta">Выбрать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="section">
+    <div class="container">
+      <div class="story-box">
+        <div class="eyebrow">История создания Safebox</div>
+        <div class="story-quote">У моей жены началась сильная аллергическая реакция. Её начало парализовывать, свело конечности, стало трудно дышать. В аптечке был Зиртек — это помогло дождаться скорую.</div>
+        <p class="lead">После этого стало понятно: у большинства людей дома есть лекарства, но нет системы действий. Safebox — попытка превратить хаотичную домашнюю аптечку в понятный emergency-инструмент первых минут.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gray">
+    <div class="container">
+      <div class="eyebrow">Для кого</div>
+      <h2>Кому подойдет Safebox</h2>
+      <div class="forwho-grid">
+        <div class="who-card"><div><span>👨‍👩‍👧‍👦</span>Семьям с детьми</div></div>
+        <div class="who-card"><div><span>🏡</span>Для дома и дачи</div></div>
+        <div class="who-card"><div><span>🚗</span>Для автомобиля</div></div>
+        <div class="who-card"><div><span>✈️</span>Для поездок и путешествий</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="section cta">
+    <div class="container">
+      <div class="eyebrow" style="background: rgba(255,255,255,.15); color: #fff;">Финальный шаг</div>
+      <h2 style="color: #fff; max-width: 900px; margin-left: auto; margin-right: auto;">Подготовьтесь заранее. Первые минуты могут спасти жизнь.</h2>
+      <p class="lead" style="color: rgba(255,255,255,.9); margin: 0 auto 28px;">Выберите формат: методичка, DIY Safebox или премиальный emergency-бокс.</p>
+      <a class="btn btn-primary" href="#products">Собрать свой Safebox</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">&copy; 2026 Safebox. Концепт лендинга для демонстрации структуры, дизайна и упаковки продукта.</div>
+  </footer>
 </body>
 </html>
