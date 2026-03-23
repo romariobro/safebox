@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Методичка по наполнению домашней аптечки — Safebox</title>
+  <style>
+    :root {
+      --red:    #e53935;
+      --orange: #ff8a00;
+      --blue:   #2f80ed;
+      --green:  #27ae60;
+      --purple: #8e44ad;
+      --yellow: #f2c94c;
+      --dark:   #222222;
+      --muted:  #6b7280;
+      --border: #e0e0e0;
+      --page-w: 190mm;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
+
+    /* ── Screen layout ── */
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f0f2f5;
+      color: var(--dark);
+      line-height: 1.5;
+      font-size: 13pt;
+    }
+
+    .sheet {
+      background: #fff;
+      width: var(--page-w);
+      margin: 24px auto;
+      padding: 16mm 14mm 14mm;
+      box-shadow: 0 8px 32px rgba(0,0,0,.14);
+      border-radius: 6px;
+    }
+
+    /* ── Screen-only toolbar ── */
+    .toolbar {
+      width: var(--page-w);
+      margin: 20px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .toolbar-brand {
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--red);
+      letter-spacing: -.02em;
+    }
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      background: var(--red);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-print:hover { background: #c62828; }
+
+    /* ── Page header ── */
+    .page-header {
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+    .page-title {
+      font-size: 18pt;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      color: var(--dark);
+    }
+    .page-subtitle {
+      font-size: 10pt;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* ── Categories ── */
+    .category {
+      margin-bottom: 12px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-left: 5px solid currentColor;
+      margin-bottom: 6px;
+      border-radius: 0 4px 4px 0;
+    }
+    .cat-header h2 {
+      font-size: 13pt;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .emoji { font-size: 15pt; line-height: 1; }
+
+    /* category colours */
+    .cat-red    { color: var(--red);    background: rgba(229,57,53,.07);   }
+    .cat-orange { color: var(--orange); background: rgba(255,138,0,.07);   }
+    .cat-blue   { color: var(--blue);   background: rgba(47,128,237,.07);  }
+    .cat-green  { color: var(--green);  background: rgba(39,174,96,.07);   }
+    .cat-purple { color: var(--purple); background: rgba(142,68,173,.07);  }
+    .cat-yellow { color: #b8860b;       background: rgba(242,201,76,.12);  }
+    .cat-dark   { color: #444;          background: rgba(34,34,34,.06);    }
+
+    /* ── Drug list ── */
+    .drug-list {
+      list-style: none;
+      padding: 0 0 0 4px;
+      display: grid;
+      gap: 4px;
+    }
+    .drug-item {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 6px;
+      align-items: start;
+      padding: 5px 8px 5px 6px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #fafafa;
+    }
+    .checkbox {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #aaa;
+      border-radius: 3px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .drug-name {
+      font-weight: 700;
+      font-size: 11pt;
+      line-height: 1.3;
+    }
+    .drug-purpose {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+    .drug-field {
+      font-size: 9pt;
+      color: #bbb;
+      border-bottom: 1px dotted #ccc;
+      margin-top: 3px;
+      padding-bottom: 1px;
+    }
+
+    /* ── Extra notes ── */
+    .extra-section {
+      margin-top: 14px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .extra-title {
+      font-size: 11pt;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .dotted-line {
+      border: none;
+      border-bottom: 1px dotted #bbb;
+      margin: 8px 0;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      margin-top: 16px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #aaa;
+    }
+
+    /* ── Print media ── */
+    @media print {
+      body {
+        background: #fff;
+        font-size: 11pt;
+      }
+      .toolbar { display: none !important; }
+      .sheet {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 15mm;
+      }
+      .category {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .drug-item {
+        background: #fff;
+        border-color: #ccc;
+      }
+      .cat-red    { background: rgba(229,57,53,.07);   print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cat-orange { background: rgba(255,138,0,.07);   print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cat-blue   { background: rgba(47,128,237,.07);  print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cat-green  { background: rgba(39,174,96,.07);   print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cat-purple { background: rgba(142,68,173,.07);  print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cat-yellow { background: rgba(242,201,76,.12);  print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cat-dark   { background: rgba(34,34,34,.06);    print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar (screen only) -->
+  <div class="toolbar">
+    <span class="toolbar-brand">⛑ Safebox</span>
+    <button class="btn-print" id="btn-print">🖨 Распечатать</button>
+  </div>
+
+  <!-- A4 Sheet -->
+  <div class="sheet">
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-title">Методичка по наполнению домашней аптечки</div>
+      <div class="page-subtitle">Покажите этот список фармацевту в аптеке. Отметьте ☑ купленные препараты.</div>
+    </div>
+
+    <!-- 1. Анафилаксия -->
+    <div class="category">
+      <div class="cat-header cat-red">
+        <span class="emoji">🔴</span>
+        <h2>Анафилаксия — тяжёлая аллергическая реакция</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Супрастин</div>
+            <div class="drug-purpose">Против сильной аллергической реакции</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Преднизолон</div>
+            <div class="drug-purpose">Против тяжёлой аллергии и отёка</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Адреналин (эпинефрин)</div>
+            <div class="drug-purpose">При опасной аллергической реакции (анафилактический шок)</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 2. Аллергия -->
+    <div class="category">
+      <div class="cat-header cat-orange">
+        <span class="emoji">🟠</span>
+        <h2>Аллергия — кожные реакции, зуд, отёк</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Зиртек (цетиризин)</div>
+            <div class="drug-purpose">Против аллергии и отёка</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Супрастин</div>
+            <div class="drug-purpose">При острой аллергической реакции</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 3. Отравление -->
+    <div class="category">
+      <div class="cat-header cat-blue">
+        <span class="emoji">🔵</span>
+        <h2>Отравление — пищевое, токсины</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Энтеросгель</div>
+            <div class="drug-purpose">При пищевом отравлении, сорбент</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Смекта</div>
+            <div class="drug-purpose">При интоксикации и диарее</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Регидрон</div>
+            <div class="drug-purpose">Восстанавливает воду и соли после отравления</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 4. Рвота -->
+    <div class="category">
+      <div class="cat-header cat-green">
+        <span class="emoji">🟢</span>
+        <h2>Рвота — тошнота, рвота</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Церукал (метоклопрамид)</div>
+            <div class="drug-purpose">Останавливает рвоту</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Домперидон</div>
+            <div class="drug-purpose">Против тошноты и рвоты</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 5. Температура -->
+    <div class="category">
+      <div class="cat-header cat-purple">
+        <span class="emoji">🟣</span>
+        <h2>Температура — жар, воспаление</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Парацетамол</div>
+            <div class="drug-purpose">Снижает температуру, обезболивает</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Ибупрофен</div>
+            <div class="drug-purpose">Жаропонижающее и противовоспалительное</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 6. Спазмы -->
+    <div class="category">
+      <div class="cat-header cat-yellow">
+        <span class="emoji">🟡</span>
+        <h2>Спазмы — боли в животе, мышечные спазмы</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Но-шпа (дротаверин)</div>
+            <div class="drug-purpose">Снимает спазмы</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Спазмалгон</div>
+            <div class="drug-purpose">Против спазмов и боли</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 7. Потеря сознания -->
+    <div class="category">
+      <div class="cat-header cat-dark">
+        <span class="emoji">⚫</span>
+        <h2>Потеря сознания — обморок, гипогликемия</h2>
+      </div>
+      <ul class="drug-list">
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Нашатырный спирт (аммиак 10%)</div>
+            <div class="drug-purpose">Приведение в сознание при обмороке</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+        <li class="drug-item">
+          <div class="checkbox"></div>
+          <div>
+            <div class="drug-name">Глюкоза (раствор 40%)</div>
+            <div class="drug-purpose">При слабости и гипогликемии</div>
+            <div class="drug-field">Форма выпуска / Кол-во: ___________________</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Additional notes -->
+    <div class="extra-section">
+      <div class="extra-title">📝 Дополнительно (свои заметки)</div>
+      <hr class="dotted-line" />
+      <hr class="dotted-line" />
+      <hr class="dotted-line" />
+      <hr class="dotted-line" />
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+      <span>Аптечка первых минут · Safebox</span>
+      <span id="footer-date"></span>
+    </div>
+
+  </div><!-- /.sheet -->
+
+  <script>
+    // Print button
+    document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+
+    // Inject today's date into footer
+    const d = new Date();
+    const months = ['января','февраля','марта','апреля','мая','июня',
+                    'июля','августа','сентября','октября','ноября','декабря'];
+    document.getElementById('footer-date').textContent =
+      'Распечатано: ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' г.';
+  </script>
+
+</body>
+</html>
