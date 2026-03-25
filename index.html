@@ -563,9 +563,9 @@
         <a href="#story" data-i18n="nav-story">История</a>
       </div>
       <div class="lang-switch" role="group" aria-label="Language switcher">
-        <button id="btnRu" class="active" onclick="setLang('ru')">RUS</button>
-        <span class="sep">|</span>
-        <button id="btnEn" onclick="setLang('en')">ENG</button>
+        <button id="btnRu" type="button" class="active" aria-pressed="true" onclick="setLang('ru')">RUS</button>
+        <span class="sep" aria-hidden="true">|</span>
+        <button id="btnEn" type="button" aria-pressed="false" onclick="setLang('en')">ENG</button>
       </div>
       <a class="btn btn-primary" href="#products" data-i18n="nav-cta">Собрать Safebox</a>
     </div>
@@ -759,7 +759,7 @@
           <div class="state-top yellow" data-i18n="state-spasms">🟡 Спазмы</div>
           <div class="state-body">
             <div class="drug">Но-шпа</div>
-            <div class="drug-desc" data-i18n="st-spa-d1">снимает спа��мы</div>
+            <div class="drug-desc" data-i18n="st-spa-d1">снимает спазмы</div>
             <div class="drug">Спазмалгон</div>
             <div class="drug-desc" data-i18n="st-spa-d2">против спазмов и боли</div>
           </div>
@@ -836,7 +836,7 @@
 
         <div class="product-card featured">
           <div class="tag" data-i18n="p2-tag">Оптимально</div>
-          <h3 style="font-size: 30px; margin-bottom: 8px;">DIY Safebox</h3>
+          <h3 style="font-size: 30px; margin-bottom: 8px;" data-i18n="p2-h3">DIY Safebox</h3>
           <p class="muted" data-i18n="p2-desc">Картонная коробка, которую пользователь собирает сам и комплектует препаратами.</p>
           <div class="simple-list">
             <div class="simple-item" data-i18n="p2-i1">Коробка и разделители</div>
@@ -1020,6 +1020,7 @@
         "p1-i3": "Понятная структура разделов",
         "p-btn": "Выбрать",
         "p2-tag": "Оптимально",
+        "p2-h3": "DIY Safebox",
         "p2-desc": "Картонная коробка, которую пользователь собирает сам и комплектует препаратами.",
         "p2-i1": "Коробка и разделители",
         "p2-i2": "Крупные наклейки по состояниям",
@@ -1164,6 +1165,7 @@
         "p1-i3": "Clear section structure",
         "p-btn": "Choose",
         "p2-tag": "Optimal",
+        "p2-h3": "DIY Safebox",
         "p2-desc": "A cardboard box that the user assembles and fills with medications.",
         "p2-i1": "Box and dividers",
         "p2-i2": "Large stickers by condition",
@@ -1198,11 +1200,19 @@
       document.querySelectorAll("[data-i18n]").forEach(function(el) {
         var key = el.getAttribute("data-i18n");
         if (t[key] !== undefined) {
-          el.innerHTML = t[key];
+          if (t[key].indexOf('<') === -1) {
+            el.textContent = t[key];
+          } else {
+            el.innerHTML = t[key];
+          }
         }
       });
-      document.getElementById("btnRu").classList.toggle("active", lang === "ru");
-      document.getElementById("btnEn").classList.toggle("active", lang === "en");
+      var btnRu = document.getElementById("btnRu");
+      var btnEn = document.getElementById("btnEn");
+      btnRu.classList.toggle("active", lang === "ru");
+      btnRu.setAttribute("aria-pressed", String(lang === "ru"));
+      btnEn.classList.toggle("active", lang === "en");
+      btnEn.setAttribute("aria-pressed", String(lang === "en"));
       localStorage.setItem("safebox-lang", lang);
     }
 
