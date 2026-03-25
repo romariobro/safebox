@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="htmlRoot">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safebox - Аварийная аптечка</title>
+  <title data-i18n="title">Safebox - Аварийная аптечка</title>
   <style>
     :root {
       --red: #e53935;
@@ -484,6 +484,37 @@
       text-align: center;
     }
 
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      padding: 4px 2px;
+      transition: color .15s;
+    }
+    .lang-switch button.active {
+      color: var(--red);
+      font-weight: 800;
+    }
+    .lang-switch button:not(.active) {
+      color: #999;
+      font-weight: 600;
+    }
+    .lang-switch .sep {
+      color: #ccc;
+      font-weight: 400;
+      pointer-events: none;
+    }
     @media (max-width: 1080px) {
       .hero-grid,
       .problem-grid,
@@ -525,66 +556,71 @@
         <div>Safebox</div>
       </div>
       <div class="nav-links">
-        <a href="#problem">Проблема</a>
-        <a href="#solution">Решение</a>
-        <a href="#states">Состояния</a>
-        <a href="#products">Продукты</a>
-        <a href="#story">История</a>
+        <a href="#problem" data-i18n="nav-problem">Проблема</a>
+        <a href="#solution" data-i18n="nav-solution">Решение</a>
+        <a href="#states" data-i18n="nav-states">Состояния</a>
+        <a href="#products" data-i18n="nav-products">Продукты</a>
+        <a href="#story" data-i18n="nav-story">История</a>
       </div>
-      <a class="btn btn-primary" href="#products">Собрать Safebox</a>
+      <div class="lang-switch" role="group" aria-label="Language switcher">
+        <button id="btnRu" type="button" class="active" aria-pressed="true" onclick="setLang('ru')">RUS</button>
+        <span class="sep" aria-hidden="true">|</span>
+        <button id="btnEn" type="button" aria-pressed="false" onclick="setLang('en')">ENG</button>
+      </div>
+      <a class="btn btn-primary" href="#products" data-i18n="nav-cta">Собрать Safebox</a>
     </div>
   </nav>
 
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="eyebrow">Safebox - Первые 3–5 минут</div>
-        <h1>Аварийная аптечка, которая подскажет что делать до приезда скорой помощи</h1>
-        <p class="lead">Лекарства разложены по критическим ситуациям. Нужное можно найти за 3 секунды. Крупные названия, понятные сценарии, QR-видео и порядок действий в стрессовой ситуации.</p>
+        <div class="eyebrow" data-i18n="hero-eyebrow">Safebox - Первые 3–5 минут</div>
+        <h1 data-i18n="hero-h1">Аварийная аптечка, которая подскажет что делать до приезда скорой помощи</h1>
+        <p class="lead" data-i18n="hero-lead">Лекарства разложены по критическим ситуациям. Нужное можно найти за 3 секунды. Крупные названия, понятные сценарии, QR-видео и порядок действий в стрессовой ситуации.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#products">Собрать свой Safebox</a>
-          <a class="btn btn-secondary" href="#states">Посмотреть состав</a>
+          <a class="btn btn-primary" href="#products" data-i18n="hero-btn-primary">Собрать свой Safebox</a>
+          <a class="btn btn-secondary" href="#states" data-i18n="hero-btn-secondary">Посмотреть состав</a>
         </div>
         <div class="hero-points">
-          <div class="point">🕐 3 секунды на поиск нужного раздела</div>
-          <div class="point">📋 Крупные инструкции и названия препаратов</div>
-          <div class="point">🎥 QR-код на видео для каждого сценария</div>
+          <div class="point" data-i18n="hero-point1">🕐 3 секунды на поиск нужного раздела</div>
+          <div class="point" data-i18n="hero-point2">📋 Крупные инструкции и названия препаратов</div>
+          <div class="point" data-i18n="hero-point3">🎥 QR-код на видео для каждого сценария</div>
         </div>
       </div>
 
       <div class="box-visual">
         <div class="box-lid">
           <div class="box-title">SAFEBOX EMERGENCY KIT</div>
-          <div class="box-sub">Аптечка первых минут до приезда скорой</div>
+          <div class="box-sub" data-i18n="hero-box-sub">Аптечка первых минут до приезда скорой</div>
         </div>
         <div class="box-grid">
           <div class="cell red">
-            <div class="name">🔴 Анафилаксия (Трудно дышать)</div>
-            <div class="desc">Супрастин · Преднизолон · Адреналин</div>
+            <div class="name" data-i18n="hero-cell-red-name">🔴 Анафилаксия (Трудно дышать)</div>
+            <div class="desc" data-i18n="hero-cell-red-desc">Супрастин · Преднизолон · Адреналин</div>
           </div>
           <div class="cell orange">
-            <div class="name">🟠 Аллергия</div>
-            <div class="desc">Зиртек · Супрастин</div>
+            <div class="name" data-i18n="hero-cell-orange-name">🟠 Аллергия</div>
+            <div class="desc" data-i18n="hero-cell-orange-desc">Зиртек · Супрастин</div>
           </div>
           <div class="cell blue">
-            <div class="name">🔵 Отравление</div>
-            <div class="desc">Энтеросгель · Смекта · Регидрон</div>
+            <div class="name" data-i18n="hero-cell-blue-name">🔵 Отравление</div>
+            <div class="desc" data-i18n="hero-cell-blue-desc">Энтеросгель · Смекта · Регидрон</div>
           </div>
           <div class="cell green">
-            <div class="name">🟢 Рвота</div>
-            <div class="desc">Церукал · Домперидон</div>
+            <div class="name" data-i18n="hero-cell-green-name">🟢 Рвота</div>
+            <div class="desc" data-i18n="hero-cell-green-desc">Церукал · Домперидон</div>
           </div>
           <div class="cell purple">
-            <div class="name">🟣 Температура</div>
-            <div class="desc">Парацетамол · Ибупрофен</div>
+            <div class="name" data-i18n="hero-cell-purple-name">🟣 Температура</div>
+            <div class="desc" data-i18n="hero-cell-purple-desc">Парацетамол · Ибупрофен</div>
           </div>
           <div class="cell yellow">
-            <div class="name">🟡 Спазмы</div>
-            <div class="desc">Но-шпа · Спазмалгон</div>
+            <div class="name" data-i18n="hero-cell-yellow-name">🟡 Спазмы</div>
+            <div class="desc" data-i18n="hero-cell-yellow-desc">Но-шпа · Спазмалгон</div>
           </div>
           <div class="cell black" style="grid-column: 1 / -1; min-height: 88px;">
-            <div class="name">⚫ Потеря сознания</div>
-            <div class="desc">Аммиак · Глюкоза</div>
+            <div class="name" data-i18n="hero-cell-black-name">⚫ Потеря сознания</div>
+            <div class="desc" data-i18n="hero-cell-black-desc">Аммиак · Глюкоза</div>
           </div>
         </div>
       </div>
@@ -594,32 +630,32 @@
   <section id="problem" class="section gray">
     <div class="container problem-grid">
       <div>
-        <div class="eyebrow">Почему это важно</div>
-        <h2>Критические состояния развиваются быстро и неожиданно</h2>
-        <p class="lead">Помощь иногда нужна человеку срочно в течение 3–5 минут. Где бы вы ни были — дома, на даче, в машине, в путешествии — скорая физически не успеет доехать за это время. Есть домашние аптечки, где лекарства не структурированны и нет простых и понятных инструкций</p>
+        <div class="eyebrow" data-i18n="problem-eyebrow">Почему это важно</div>
+        <h2 data-i18n="problem-h2">Критические состояния развиваются быстро и неожиданно</h2>
+        <p class="lead" data-i18n="problem-lead">Помощь иногда нужна человеку срочно в течение 3–5 минут. Где бы вы ни были — дома, на даче, в машине, в путешествии — скорая физически не успеет доехать за это время. Есть домашние аптечки, где лекарства не структурированны и нет простых и понятных инструкций</p>
         <div class="danger-list">
-          <div class="danger-item">Аллергическая реакция и отек</div>
-          <div class="danger-item">Удушье и резкое ухудшение дыхания</div>
-          <div class="danger-item">Рвота, обезвоживание, отравление</div>
-          <div class="danger-item">Высокая температура и спазмы</div>
-          <div class="danger-item">Потеря сознания и резкая слабость</div>
+          <div class="danger-item" data-i18n="problem-danger1">Аллергическая реакция и отек</div>
+          <div class="danger-item" data-i18n="problem-danger2">Удушье и резкое ухудшение дыхания</div>
+          <div class="danger-item" data-i18n="problem-danger3">Рвота, обезвоживание, отравление</div>
+          <div class="danger-item" data-i18n="problem-danger4">Высокая температура и спазмы</div>
+          <div class="danger-item" data-i18n="problem-danger5">Потеря сознания и резкая слабость</div>
         </div>
       </div>
 
       <div class="timeline-card">
-        <h3 style="font-size: 30px; line-height: 1.15;">Что обычно происходит дома</h3>
+        <h3 style="font-size: 30px; line-height: 1.15;" data-i18n="timeline-h3">Что обычно происходит дома</h3>
         <div class="timeline">
           <div class="timeline-step">
-            <div class="time-badge">0–1<br>мин</div>
-            <div><strong>Паника.</strong> Человек теряется и не понимает, что происходит.</div>
+            <div class="time-badge" data-i18n="timeline-badge1">0–1<br>мин</div>
+            <div data-i18n="timeline-step1"><strong>Паника.</strong> Человек теряется и не понимает, что происходит.</div>
           </div>
           <div class="timeline-step">
-            <div class="time-badge">1–3<br>мин</div>
-            <div><strong>Поиск лекарств.</strong> Никто не помнит, где что лежит и что именно нужно.</div>
+            <div class="time-badge" data-i18n="timeline-badge2">1–3<br>мин</div>
+            <div data-i18n="timeline-step2"><strong>Поиск лекарств.</strong> Никто не помнит, где что лежит и что именно нужно.</div>
           </div>
           <div class="timeline-step">
-            <div class="time-badge">3–5<br>мин</div>
-            <div><strong>Риск ухудшения.</strong> В критических сценариях это уже может быть слишком поздно.</div>
+            <div class="time-badge" data-i18n="timeline-badge3">3–5<br>мин</div>
+            <div data-i18n="timeline-step3"><strong>Риск ухудшения.</strong> В критических сценариях это уже может быть слишком поздно.</div>
           </div>
         </div>
       </div>
@@ -629,30 +665,30 @@
   <section id="solution" class="section">
     <div class="container solution-grid">
       <div class="mock-card">
-        <div class="eyebrow">Решение</div>
-        <h2>Структурированная Safebox для критических ситуаций</h2>
-        <p class="lead">Каждое состояние имеет свой цветной раздел. Внутри — только нужные препараты, крупное название и краткий сценарий применения.</p>
+        <div class="eyebrow" data-i18n="solution-eyebrow">Решение</div>
+        <h2 data-i18n="solution-h2">Структурированная Safebox для критических ситуаций</h2>
+        <p class="lead" data-i18n="solution-lead">Каждое состояние имеет свой цветной раздел. Внутри — только нужные препараты, крупное название и краткий сценарий применения.</p>
         <div class="stack">
-          <div class="stack-card"><span class="dot" style="background: var(--red);"></span> Крупные названия препаратов</div>
-          <div class="stack-card"><span class="dot" style="background: var(--orange);"></span> Инструкции по шагам</div>
-          <div class="stack-card"><span class="dot" style="background: var(--blue);"></span> Отдельные разделы по сценариям</div>
-          <div class="stack-card"><span class="dot" style="background: var(--green);"></span> QR-коды на короткие видео</div>
+          <div class="stack-card" data-i18n="solution-stack1"><span class="dot" style="background: var(--red);"></span> Крупные названия препаратов</div>
+          <div class="stack-card" data-i18n="solution-stack2"><span class="dot" style="background: var(--orange);"></span> Инструкции по шагам</div>
+          <div class="stack-card" data-i18n="solution-stack3"><span class="dot" style="background: var(--blue);"></span> Отдельные разделы по сценариям</div>
+          <div class="stack-card" data-i18n="solution-stack4"><span class="dot" style="background: var(--green);"></span> QR-коды на короткие видео</div>
         </div>
       </div>
 
       <div class="box-visual">
         <div class="box-lid">
-          <div class="box-title">Как это выглядит внутри</div>
-          <div class="box-sub">Секции с цветовой кодировкой и понятной навигацией</div>
+          <div class="box-title" data-i18n="solution-box-title">Как это выглядит внутри</div>
+          <div class="box-sub" data-i18n="solution-box-sub">Секции с цветовой кодировкой и понятной навигацией</div>
         </div>
         <div class="box-grid">
-          <div class="cell red"><div class="name">🔴 Анафилаксия</div><div class="desc">Опасная аллергическая реакция</div></div>
-          <div class="cell orange"><div class="name">🟠 Аллергия</div><div class="desc">Сыпь, отек, реакция на еду или препарат</div></div>
-          <div class="cell blue"><div class="name">🔵 Отравление</div><div class="desc">Интоксикация, диарея, обезвоживание</div></div>
-          <div class="cell green"><div class="name">🟢 Рвота</div><div class="desc">Тошнота и противорвотные препараты</div></div>
-          <div class="cell purple"><div class="name">🟣 Температура</div><div class="desc">Жаропонижающее</div></div>
-          <div class="cell yellow"><div class="name">🟡 Спазмы</div><div class="desc">Спазмолитики и болевой синдром</div></div>
-          <div class="cell black" style="grid-column: 1 / -1;"><div class="name">⚫ Потеря сознания</div><div class="desc">Обморок, резкая слабость</div></div>
+          <div class="cell red"><div class="name" data-i18n="sol-cell-red-name">🔴 Анафилаксия</div><div class="desc" data-i18n="sol-cell-red-desc">Опасная аллергическая реакция</div></div>
+          <div class="cell orange"><div class="name" data-i18n="sol-cell-orange-name">🟠 Аллергия</div><div class="desc" data-i18n="sol-cell-orange-desc">Сыпь, отек, реакция на еду или препарат</div></div>
+          <div class="cell blue"><div class="name" data-i18n="sol-cell-blue-name">🔵 Отравление</div><div class="desc" data-i18n="sol-cell-blue-desc">Интоксикация, диарея, обезвоживание</div></div>
+          <div class="cell green"><div class="name" data-i18n="sol-cell-green-name">🟢 Рвота</div><div class="desc" data-i18n="sol-cell-green-desc">Тошнота и противорвотные препараты</div></div>
+          <div class="cell purple"><div class="name" data-i18n="sol-cell-purple-name">🟣 Температура</div><div class="desc" data-i18n="sol-cell-purple-desc">Жаропонижающее</div></div>
+          <div class="cell yellow"><div class="name" data-i18n="sol-cell-yellow-name">🟡 Спазмы</div><div class="desc" data-i18n="sol-cell-yellow-desc">Спазмолитики и болевой синдром</div></div>
+          <div class="cell black" style="grid-column: 1 / -1;"><div class="name" data-i18n="sol-cell-black-name">⚫ Потеря сознания</div><div class="desc" data-i18n="sol-cell-black-desc">Обморок, резкая слабость</div></div>
         </div>
       </div>
     </div>
@@ -660,82 +696,82 @@
 
   <section id="states" class="section gray">
     <div class="container">
-      <div class="eyebrow">Критические состояния</div>
-      <h2>7 сценариев, которые Safebox должна закрывать дома</h2>
-      <p class="lead">По лекарствам — только крупные названия и от чего они. Без перегруженных инструкций на экране.</p>
+      <div class="eyebrow" data-i18n="states-eyebrow">Критические состояния</div>
+      <h2 data-i18n="states-h2">7 сценариев, которые Safebox должна закрывать дома</h2>
+      <p class="lead" data-i18n="states-lead">По лекарствам — только крупные названия и от чего они. Без перегруженных инструкций на экране.</p>
 
       <div class="states-grid">
         <div class="state-card">
-          <div class="state-top red">🔴 Анафилаксия</div>
+          <div class="state-top red" data-i18n="state-anaphylaxis">🔴 Анафилаксия</div>
           <div class="state-body">
             <div class="drug">Супрастин</div>
-            <div class="drug-desc">против сильной аллергической реакции</div>
+            <div class="drug-desc" data-i18n="st-ana-d1">против сильной аллергической реакции</div>
             <div class="drug">Преднизолон</div>
-            <div class="drug-desc">против тяжелой аллергии и отека</div>
+            <div class="drug-desc" data-i18n="st-ana-d2">против тяжелой аллергии и отека</div>
             <div class="drug">Адреналин</div>
-            <div class="drug-desc">при опасной аллергической реакции</div>
+            <div class="drug-desc" data-i18n="st-ana-d3">при опасной аллергической реакции</div>
           </div>
         </div>
 
         <div class="state-card">
-          <div class="state-top orange">🟠 Аллергия</div>
+          <div class="state-top orange" data-i18n="state-allergy">🟠 Аллергия</div>
           <div class="state-body">
             <div class="drug">Зиртек</div>
-            <div class="drug-desc">против аллергии и отека</div>
+            <div class="drug-desc" data-i18n="st-all-d1">против аллергии и отека</div>
             <div class="drug">Супрастин</div>
-            <div class="drug-desc">при острой аллергической реакции</div>
+            <div class="drug-desc" data-i18n="st-all-d2">при острой аллергической реакции</div>
           </div>
         </div>
 
         <div class="state-card">
-          <div class="state-top blue">🔵 Отравление</div>
+          <div class="state-top blue" data-i18n="state-poisoning">🔵 Отравление</div>
           <div class="state-body">
             <div class="drug">Энтеросгель</div>
-            <div class="drug-desc">при пищевом отравлении</div>
+            <div class="drug-desc" data-i18n="st-poi-d1">при пищевом отравлении</div>
             <div class="drug">Смекта</div>
-            <div class="drug-desc">при интоксикации и диарее</div>
+            <div class="drug-desc" data-i18n="st-poi-d2">при интоксикации и диарее</div>
             <div class="drug">Регидрон</div>
-            <div class="drug-desc">восстанавливает воду и соли</div>
+            <div class="drug-desc" data-i18n="st-poi-d3">восстанавливает воду и соли</div>
           </div>
         </div>
 
         <div class="state-card">
-          <div class="state-top green">🟢 Рвота</div>
+          <div class="state-top green" data-i18n="state-vomiting">🟢 Рвота</div>
           <div class="state-body">
             <div class="drug">Церукал</div>
-            <div class="drug-desc">останавливает рвоту</div>
+            <div class="drug-desc" data-i18n="st-vom-d1">останавливает рвоту</div>
             <div class="drug">Домперидон</div>
-            <div class="drug-desc">против тошноты и рвоты</div>
+            <div class="drug-desc" data-i18n="st-vom-d2">против тошноты и рвоты</div>
           </div>
         </div>
 
         <div class="state-card">
-          <div class="state-top purple">🟣 Температура</div>
+          <div class="state-top purple" data-i18n="state-fever">🟣 Температура</div>
           <div class="state-body">
             <div class="drug">Парацетамол</div>
-            <div class="drug-desc">снижает температуру</div>
+            <div class="drug-desc" data-i18n="st-fev-d1">снижает температуру</div>
             <div class="drug">Ибупрофен</div>
-            <div class="drug-desc">жаропонижающее и противовоспалительное</div>
+            <div class="drug-desc" data-i18n="st-fev-d2">жаропонижающее и противовоспалительное</div>
           </div>
         </div>
 
         <div class="state-card">
-          <div class="state-top yellow">🟡 Спазмы</div>
+          <div class="state-top yellow" data-i18n="state-spasms">🟡 Спазмы</div>
           <div class="state-body">
             <div class="drug">Но-шпа</div>
-            <div class="drug-desc">снимает спа��мы</div>
+            <div class="drug-desc" data-i18n="st-spa-d1">снимает спазмы</div>
             <div class="drug">Спазмалгон</div>
-            <div class="drug-desc">против спазмов и боли</div>
+            <div class="drug-desc" data-i18n="st-spa-d2">против спазмов и боли</div>
           </div>
         </div>
 
         <div class="state-card" style="grid-column: 1 / -1;">
-          <div class="state-top black">⚫ Потеря сознания</div>
+          <div class="state-top black" data-i18n="state-unconscious">⚫ Потеря сознания</div>
           <div class="state-body">
             <div class="drug">Аммиак</div>
-            <div class="drug-desc">приведение в сознание</div>
+            <div class="drug-desc" data-i18n="st-unc-d1">приведение в сознание</div>
             <div class="drug">Глюкоза</div>
-            <div class="drug-desc">при слабости и гипогликемии</div>
+            <div class="drug-desc" data-i18n="st-unc-d2">при слабости и гипогликемии</div>
           </div>
         </div>
       </div>
@@ -745,34 +781,34 @@
   <section class="section">
     <div class="container how-grid">
       <div>
-        <div class="eyebrow">Как пользоваться Safebox</div>
-        <h2>Простой алгоритм в стрессовой ситуации</h2>
-        <p class="lead">Не нужно вспоминать десятки инструкций. Логика одна: определить состояние, открыть нужный раздел, выполнить действия по шагам.</p>
+        <div class="eyebrow" data-i18n="how-eyebrow">Как пользоваться Safebox</div>
+        <h2 data-i18n="how-h2">Простой алгоритм в стрессовой ситуации</h2>
+        <p class="lead" data-i18n="how-lead">Не нужно вспоминать десятки инструкций. Логика одна: определить состояние, открыть нужный раздел, выполнить действия по шагам.</p>
         <div class="steps">
           <div class="step">
             <div class="step-num">1</div>
-            <div><strong>Оценить состояние.</strong><br><span class="muted">Что происходит: аллергия, рвота, температура, спазмы, обморок.</span></div>
+            <div data-i18n="how-step1"><strong>Оценить состояние.</strong><br><span class="muted">Что происходит: аллергия, рвота, температура, спазмы, обморок.</span></div>
           </div>
           <div class="step">
             <div class="step-num">2</div>
-            <div><strong>Открыть нужный раздел.</strong><br><span class="muted">Цветная навигация и крупные названия помогают найти нужное за секунды.</span></div>
+            <div data-i18n="how-step2"><strong>Открыть нужный раздел.</strong><br><span class="muted">Цветная навигация и крупные названия помогают найти нужное за секунды.</span></div>
           </div>
           <div class="step">
             <div class="step-num">3</div>
-            <div><strong>Следовать инструкции.</strong><br><span class="muted">На карточке и по QR-видео — понятный сценарий действий.</span></div>
+            <div data-i18n="how-step3"><strong>Следовать инструкции.</strong><br><span class="muted">На карточке и по QR-видео — понятный сценарий действий.</span></div>
           </div>
         </div>
       </div>
 
       <div class="mock-card">
-        <h3 style="font-size: 28px; margin-bottom: 16px;">Идеальный дизайн Safebox</h3>
+        <h3 style="font-size: 28px; margin-bottom: 16px;" data-i18n="design-h3">Идеальный дизайн Safebox</h3>
         <div class="feature-list">
-          <div class="feature-item">Белый или светло-серый корпус — ощущение чистоты и доверия</div>
-          <div class="feature-item">Цветные секции внутри — мгновенная навигация по состояниям</div>
-          <div class="feature-item">Крупные стикеры — видно даже в панике</div>
-          <div class="feature-item">Минимум текста на коробке — максимум читаемости</div>
-          <div class="feature-item">QR-код на каждом разделе — быстрый переход к видео</div>
-          <div class="feature-item">Форм-фактор органайзера — удобно хранить дома, в машине, на даче</div>
+          <div class="feature-item" data-i18n="design-f1">Белый или светло-серый корпус — ощущение чистоты и доверия</div>
+          <div class="feature-item" data-i18n="design-f2">Цветные секции внутри — мгновенная навигация по состояниям</div>
+          <div class="feature-item" data-i18n="design-f3">Крупные стикеры — видно даже в панике</div>
+          <div class="feature-item" data-i18n="design-f4">Минимум текста на коробке — максимум читаемости</div>
+          <div class="feature-item" data-i18n="design-f5">QR-код на каждом разделе — быстрый переход к видео</div>
+          <div class="feature-item" data-i18n="design-f6">Форм-фактор органайзера — удобно хранить дома, в машине, на даче</div>
         </div>
       </div>
     </div>
@@ -780,48 +816,48 @@
 
   <section id="products" class="section gray">
     <div class="container">
-      <div class="eyebrow">Линейка Safebox</div>
-      <h2>Три версии для разного бюджета и уровня готовности</h2>
-      <p class="lead">Логика лестницы продукта: сначала методичка, затем DIY-версия, затем премиальный бокс с разделителями и дизайном.</p>
+      <div class="eyebrow" data-i18n="products-eyebrow">Линейка Safebox</div>
+      <h2 data-i18n="products-h2">Три версии для разного бюджета и уровня готовности</h2>
+      <p class="lead" data-i18n="products-lead">Логика лестницы продукта: сначала методичка, затем DIY-версия, затем премиальный бокс с разделителями и дизайном.</p>
 
       <div class="products-grid">
         <div class="product-card">
-          <div class="tag">Старт</div>
-          <h3 style="font-size: 30px; margin-bottom: 8px;">Методичка</h3>
-          <p class="muted">PDF-инструкция по сборке домашней Safebox для критических ситуаций.</p>
+          <div class="tag" data-i18n="p1-tag">Старт</div>
+          <h3 style="font-size: 30px; margin-bottom: 8px;" data-i18n="p1-h3">Методичка</h3>
+          <p class="muted" data-i18n="p1-desc">PDF-инструкция по сборке домашней Safebox для критических ситуаций.</p>
           <div class="simple-list">
-            <div class="simple-item">Список препаратов</div>
-            <div class="simple-item">От чего каждый препарат</div>
-            <div class="simple-item">Понятная структура разделов</div>
+            <div class="simple-item" data-i18n="p1-i1">Список препаратов</div>
+            <div class="simple-item" data-i18n="p1-i2">От чего каждый препарат</div>
+            <div class="simple-item" data-i18n="p1-i3">Понятная структура разделов</div>
           </div>
           <div class="price">490 ₽</div>
-          <a class="btn btn-primary" href="#cta">Выбрать</a>
+          <a class="btn btn-primary" href="#cta" data-i18n="p-btn">Выбрать</a>
         </div>
 
         <div class="product-card featured">
-          <div class="tag">Оптимально</div>
-          <h3 style="font-size: 30px; margin-bottom: 8px;">DIY Safebox</h3>
-          <p class="muted">Картонная коробка, которую пользователь собирает сам и комплектует препаратами.</p>
+          <div class="tag" data-i18n="p2-tag">Оптимально</div>
+          <h3 style="font-size: 30px; margin-bottom: 8px;" data-i18n="p2-h3">DIY Safebox</h3>
+          <p class="muted" data-i18n="p2-desc">Картонная коробка, которую пользователь собирает сам и комплектует препаратами.</p>
           <div class="simple-list">
-            <div class="simple-item">Коробка и разделители</div>
-            <div class="simple-item">Крупные наклейки по состояниям</div>
-            <div class="simple-item">Список препаратов и карточки</div>
+            <div class="simple-item" data-i18n="p2-i1">Коробка и разделители</div>
+            <div class="simple-item" data-i18n="p2-i2">Крупные наклейки по состояниям</div>
+            <div class="simple-item" data-i18n="p2-i3">Список препаратов и карточки</div>
           </div>
           <div class="price">1990 ₽</div>
-          <a class="btn btn-primary" href="#cta">Выбрать</a>
+          <a class="btn btn-primary" href="#cta" data-i18n="p-btn">Выбрать</a>
         </div>
 
         <div class="product-card">
-          <div class="tag">Премиум</div>
-          <h3 style="font-size: 30px; margin-bottom: 8px;">Премиум Safebox</h3>
-          <p class="muted">Пластиковый органайзер с зонами, стикерами, QR и готовой логикой хранения.</p>
+          <div class="tag" data-i18n="p3-tag">Премиум</div>
+          <h3 style="font-size: 30px; margin-bottom: 8px;" data-i18n="p3-h3">Премиум Safebox</h3>
+          <p class="muted" data-i18n="p3-desc">Пластиковый органайзер с зонами, стикерами, QR и готовой логикой хранения.</p>
           <div class="simple-list">
-            <div class="simple-item">Разделенные секции</div>
-            <div class="simple-item">Крупные названия и навигация</div>
-            <div class="simple-item">QR-коды на видео по каждому сценарию</div>
+            <div class="simple-item" data-i18n="p3-i1">Разделенные секции</div>
+            <div class="simple-item" data-i18n="p3-i2">Крупные названия и навигация</div>
+            <div class="simple-item" data-i18n="p3-i3">QR-коды на видео по каждому сценарию</div>
           </div>
           <div class="price">4990 ₽</div>
-          <a class="btn btn-primary" href="#cta">Выбрать</a>
+          <a class="btn btn-primary" href="#cta" data-i18n="p-btn">Выбрать</a>
         </div>
       </div>
     </div>
@@ -830,37 +866,364 @@
   <section id="story" class="section">
     <div class="container">
       <div class="story-box">
-        <div class="eyebrow">История создания Safebox</div>
-        <div class="story-quote">У моей жены началась сильная аллергическая реакция. Её начало парализовывать, свело конечности, стало трудно дышать. В аптечке был Зиртек — это помогло дождаться скорую.</div>
-        <p class="lead">После этого стало понятно: у большинства людей дома есть лекарства, но нет системы действий. Safebox — попытка превратить хаотичную домашнюю аптечку в понятный emergency-инструмент первых минут.</p>
+        <div class="eyebrow" data-i18n="story-eyebrow">История создания Safebox</div>
+        <div class="story-quote" data-i18n="story-quote">У моей жены началась сильная аллергическая реакция. Её начало парализовывать, свело конечности, стало трудно дышать. В аптечке был Зиртек — это помогло дождаться скорую.</div>
+        <p class="lead" data-i18n="story-lead">После этого стало понятно: у большинства людей дома есть лекарства, но нет системы действий. Safebox — попытка превратить хаотичную домашнюю аптечку в понятный emergency-инструмент первых минут.</p>
       </div>
     </div>
   </section>
 
   <section class="section gray">
     <div class="container">
-      <div class="eyebrow">Для кого</div>
-      <h2>Кому подойдет Safebox</h2>
+      <div class="eyebrow" data-i18n="forwho-eyebrow">Для кого</div>
+      <h2 data-i18n="forwho-h2">Кому подойдет Safebox</h2>
       <div class="forwho-grid">
-        <div class="who-card"><div><span>👨‍👩‍👧‍👦</span>Семьям с детьми</div></div>
-        <div class="who-card"><div><span>🏡</span>Для дома и дачи</div></div>
-        <div class="who-card"><div><span>🚗</span>Для автомобиля</div></div>
-        <div class="who-card"><div><span>✈️</span>Для поездок и путешествий</div></div>
+        <div class="who-card"><div data-i18n="forwho-c1"><span>👨‍👩‍👧‍👦</span>Семьям с детьми</div></div>
+        <div class="who-card"><div data-i18n="forwho-c2"><span>🏡</span>Для дома и дачи</div></div>
+        <div class="who-card"><div data-i18n="forwho-c3"><span>🚗</span>Для автомобиля</div></div>
+        <div class="who-card"><div data-i18n="forwho-c4"><span>✈️</span>Для поездок и путешествий</div></div>
       </div>
     </div>
   </section>
 
   <section id="cta" class="section cta">
     <div class="container">
-      <div class="eyebrow" style="background: rgba(255,255,255,.15); color: #fff;">Финальный шаг</div>
-      <h2 style="color: #fff; max-width: 900px; margin-left: auto; margin-right: auto;">Подготовьтесь заранее. Первые минуты могут спасти жизнь.</h2>
-      <p class="lead" style="color: rgba(255,255,255,.9); margin: 0 auto 28px;">Выберите формат: методичка, DIY Safebox или премиальный emergency-бокс.</p>
-      <a class="btn btn-primary" href="#products">Собрать свой Safebox</a>
+      <div class="eyebrow" style="background: rgba(255,255,255,.15); color: #fff;" data-i18n="cta-eyebrow">Финальный шаг</div>
+      <h2 style="color: #fff; max-width: 900px; margin-left: auto; margin-right: auto;" data-i18n="cta-h2">Подготовьтесь заранее. Первые минуты могут спасти жизнь.</h2>
+      <p class="lead" style="color: rgba(255,255,255,.9); margin: 0 auto 28px;" data-i18n="cta-lead">Выберите формат: методичка, DIY Safebox или премиальный emergency-бокс.</p>
+      <a class="btn btn-primary" href="#products" data-i18n="cta-btn">Собрать свой Safebox</a>
     </div>
   </section>
 
   <footer>
-    <div class="container">&copy; 2026 Safebox. Концепт лендинга для демонстрации структуры, дизайна и упаковки продукта.</div>
+    <div class="container" data-i18n="footer-copy">&copy; 2026 Safebox. Концепт лендинга для демонстрации структуры, дизайна и упаковки продукта.</div>
   </footer>
+
+  <script>
+    var translations = {
+      ru: {
+        "title": "Safebox - Аварийная аптечка",
+        "nav-problem": "Проблема",
+        "nav-solution": "Решение",
+        "nav-states": "Состояния",
+        "nav-products": "Продукты",
+        "nav-story": "История",
+        "nav-cta": "Собрать Safebox",
+        "hero-eyebrow": "Safebox - Первые 3–5 минут",
+        "hero-h1": "Аварийная аптечка, которая подскажет что делать до приезда скорой помощи",
+        "hero-lead": "Лекарства разложены по критическим ситуациям. Нужное можно найти за 3 секунды. Крупные названия, понятные сценарии, QR-видео и порядок действий в стрессовой ситуации.",
+        "hero-btn-primary": "Собрать свой Safebox",
+        "hero-btn-secondary": "Посмотреть состав",
+        "hero-point1": "🕐 3 секунды на поиск нужного раздела",
+        "hero-point2": "📋 Крупные инструкции и названия препаратов",
+        "hero-point3": "🎥 QR-код на видео для каждого сценария",
+        "hero-box-sub": "Аптечка первых минут до приезда скорой",
+        "hero-cell-red-name": "🔴 Анафилаксия (Трудно дышать)",
+        "hero-cell-red-desc": "Супрастин · Преднизолон · Адреналин",
+        "hero-cell-orange-name": "🟠 Аллергия",
+        "hero-cell-orange-desc": "Зиртек · Супрастин",
+        "hero-cell-blue-name": "🔵 Отравление",
+        "hero-cell-blue-desc": "Энтеросгель · Смекта · Регидрон",
+        "hero-cell-green-name": "🟢 Рвота",
+        "hero-cell-green-desc": "Церукал · Домперидон",
+        "hero-cell-purple-name": "🟣 Температура",
+        "hero-cell-purple-desc": "Парацетамол · Ибупрофен",
+        "hero-cell-yellow-name": "🟡 Спазмы",
+        "hero-cell-yellow-desc": "Но-шпа · Спазмалгон",
+        "hero-cell-black-name": "⚫ Потеря сознания",
+        "hero-cell-black-desc": "Аммиак · Глюкоза",
+        "problem-eyebrow": "Почему это важно",
+        "problem-h2": "Критические состояния развиваются быстро и неожиданно",
+        "problem-lead": "Помощь иногда нужна человеку срочно в течение 3–5 минут. Где бы вы ни были — дома, на даче, в машине, в путешествии — скорая физически не успеет доехать за это время. Есть домашние аптечки, где лекарства не структурированны и нет простых и понятных инструкций",
+        "problem-danger1": "Аллергическая реакция и отек",
+        "problem-danger2": "Удушье и резкое ухудшение дыхания",
+        "problem-danger3": "Рвота, обезвоживание, отравление",
+        "problem-danger4": "Высокая температура и спазмы",
+        "problem-danger5": "Потеря сознания и резкая слабость",
+        "timeline-h3": "Что обычно происходит дома",
+        "timeline-badge1": "0–1<br>мин",
+        "timeline-step1": "<strong>Паника.</strong> Человек теряется и не понимает, что происходит.",
+        "timeline-badge2": "1–3<br>мин",
+        "timeline-step2": "<strong>Поиск лекарств.</strong> Никто не помнит, где что лежит и что именно нужно.",
+        "timeline-badge3": "3–5<br>мин",
+        "timeline-step3": "<strong>Риск ухудшения.</strong> В критических сценариях это уже может быть слишком поздно.",
+        "solution-eyebrow": "Решение",
+        "solution-h2": "Структурированная Safebox для критических ситуаций",
+        "solution-lead": "Каждое состояние имеет свой цветной раздел. Внутри — только нужные препараты, крупное название и краткий сценарий применения.",
+        "solution-stack1": "<span class=\"dot\" style=\"background: var(--red);\"></span> Крупные названия препаратов",
+        "solution-stack2": "<span class=\"dot\" style=\"background: var(--orange);\"></span> Инструкции по шагам",
+        "solution-stack3": "<span class=\"dot\" style=\"background: var(--blue);\"></span> Отдельные разделы по сценариям",
+        "solution-stack4": "<span class=\"dot\" style=\"background: var(--green);\"></span> QR-коды на короткие видео",
+        "solution-box-title": "Как это выглядит внутри",
+        "solution-box-sub": "Секции с цветовой кодировкой и понятной навигацией",
+        "sol-cell-red-name": "🔴 Анафилаксия",
+        "sol-cell-red-desc": "Опасная аллергическая реакция",
+        "sol-cell-orange-name": "🟠 Аллергия",
+        "sol-cell-orange-desc": "Сыпь, отек, реакция на еду или препарат",
+        "sol-cell-blue-name": "🔵 Отравление",
+        "sol-cell-blue-desc": "Интоксикация, диарея, обезвоживание",
+        "sol-cell-green-name": "🟢 Рвота",
+        "sol-cell-green-desc": "Тошнота и противорвотные препараты",
+        "sol-cell-purple-name": "🟣 Температура",
+        "sol-cell-purple-desc": "Жаропонижающее",
+        "sol-cell-yellow-name": "🟡 Спазмы",
+        "sol-cell-yellow-desc": "Спазмолитики и болевой синдром",
+        "sol-cell-black-name": "⚫ Потеря сознания",
+        "sol-cell-black-desc": "Обморок, резкая слабость",
+        "states-eyebrow": "Критические состояния",
+        "states-h2": "7 сценариев, которые Safebox должна закрывать дома",
+        "states-lead": "По лекарствам — только крупные названия и от чего они. Без перегруженных инструкций на экране.",
+        "state-anaphylaxis": "🔴 Анафилаксия",
+        "st-ana-d1": "против сильной аллергической реакции",
+        "st-ana-d2": "против тяжелой аллергии и отека",
+        "st-ana-d3": "при опасной аллергической реакции",
+        "state-allergy": "🟠 Аллергия",
+        "st-all-d1": "против аллергии и отека",
+        "st-all-d2": "при острой аллергической реакции",
+        "state-poisoning": "🔵 Отравление",
+        "st-poi-d1": "при пищевом отравлении",
+        "st-poi-d2": "при интоксикации и диарее",
+        "st-poi-d3": "восстанавливает воду и соли",
+        "state-vomiting": "🟢 Рвота",
+        "st-vom-d1": "останавливает рвоту",
+        "st-vom-d2": "против тошноты и рвоты",
+        "state-fever": "🟣 Температура",
+        "st-fev-d1": "снижает температуру",
+        "st-fev-d2": "жаропонижающее и противовоспалительное",
+        "state-spasms": "🟡 Спазмы",
+        "st-spa-d1": "снимает спазмы",
+        "st-spa-d2": "против спазмов и боли",
+        "state-unconscious": "⚫ Потеря сознания",
+        "st-unc-d1": "приведение в сознание",
+        "st-unc-d2": "при слабости и гипогликемии",
+        "how-eyebrow": "Как пользоваться Safebox",
+        "how-h2": "Простой алгоритм в стрессовой ситуации",
+        "how-lead": "Не нужно вспоминать десятки инструкций. Логика одна: определить состояние, открыть нужный раздел, выполнить действия по шагам.",
+        "how-step1": "<strong>Оценить состояние.</strong><br><span class=\"muted\">Что происходит: аллергия, рвота, температура, спазмы, обморок.</span>",
+        "how-step2": "<strong>Открыть нужный раздел.</strong><br><span class=\"muted\">Цветная навигация и крупные названия помогают найти нужное за секунды.</span>",
+        "how-step3": "<strong>Следовать инструкции.</strong><br><span class=\"muted\">На карточке и по QR-видео — понятный сценарий действий.</span>",
+        "design-h3": "Идеальный дизайн Safebox",
+        "design-f1": "Белый или светло-серый корпус — ощущение чистоты и доверия",
+        "design-f2": "Цветные секции внутри — мгновенная навигация по состояниям",
+        "design-f3": "Крупные стикеры — видно даже в панике",
+        "design-f4": "Минимум текста на коробке — максимум читаемости",
+        "design-f5": "QR-код на каждом разделе — быстрый переход к видео",
+        "design-f6": "Форм-фактор органайзера — удобно хранить дома, в машине, на даче",
+        "products-eyebrow": "Линейка Safebox",
+        "products-h2": "Три версии для разного бюджета и уровня готовности",
+        "products-lead": "Логика лестницы продукта: сначала методичка, затем DIY-версия, затем премиальный бокс с разделителями и дизайном.",
+        "p1-tag": "Старт",
+        "p1-h3": "Методичка",
+        "p1-desc": "PDF-инструкция по сборке домашней Safebox для критических ситуаций.",
+        "p1-i1": "Список препаратов",
+        "p1-i2": "От чего каждый препарат",
+        "p1-i3": "Понятная структура разделов",
+        "p-btn": "Выбрать",
+        "p2-tag": "Оптимально",
+        "p2-h3": "DIY Safebox",
+        "p2-desc": "Картонная коробка, которую пользователь собирает сам и комплектует препаратами.",
+        "p2-i1": "Коробка и разделители",
+        "p2-i2": "Крупные наклейки по состояниям",
+        "p2-i3": "Список препаратов и карточки",
+        "p3-tag": "Премиум",
+        "p3-h3": "Премиум Safebox",
+        "p3-desc": "Пластиковый органайзер с зонами, стикерами, QR и готовой логикой хранения.",
+        "p3-i1": "Разделенные секции",
+        "p3-i2": "Крупные названия и навигация",
+        "p3-i3": "QR-коды на видео по каждому сценарию",
+        "story-eyebrow": "История создания Safebox",
+        "story-quote": "У моей жены началась сильная аллергическая реакция. Её начало парализовывать, свело конечности, стало трудно дышать. В аптечке был Зиртек — это помогло дождаться скорую.",
+        "story-lead": "После этого стало понятно: у большинства людей дома есть лекарства, но нет системы действий. Safebox — попытка превратить хаотичную домашнюю аптечку в понятный emergency-инструмент первых минут.",
+        "forwho-eyebrow": "Для кого",
+        "forwho-h2": "Кому подойдет Safebox",
+        "forwho-c1": "<span>👨‍👩‍👧‍👦</span>Семьям с детьми",
+        "forwho-c2": "<span>🏡</span>Для дома и дачи",
+        "forwho-c3": "<span>🚗</span>Для автомобиля",
+        "forwho-c4": "<span>✈️</span>Для поездок и путешествий",
+        "cta-eyebrow": "Финальный шаг",
+        "cta-h2": "Подготовьтесь заранее. Первые минуты могут спасти жизнь.",
+        "cta-lead": "Выберите формат: методичка, DIY Safebox или премиальный emergency-бокс.",
+        "cta-btn": "Собрать свой Safebox",
+        "footer-copy": "\u00a9 2026 Safebox. Концепт лендинга для демонстрации структуры, дизайна и упаковки продукта."
+      },
+      en: {
+        "title": "Safebox - Emergency First Aid Kit",
+        "nav-problem": "Problem",
+        "nav-solution": "Solution",
+        "nav-states": "Conditions",
+        "nav-products": "Products",
+        "nav-story": "Story",
+        "nav-cta": "Build Safebox",
+        "hero-eyebrow": "Safebox - First 3–5 Minutes",
+        "hero-h1": "Emergency first aid kit that tells you what to do before the ambulance arrives",
+        "hero-lead": "Medications organized by critical situations. Find what you need in 3 seconds. Large labels, clear scenarios, QR-videos, and step-by-step actions for stressful situations.",
+        "hero-btn-primary": "Build Your Safebox",
+        "hero-btn-secondary": "See Contents",
+        "hero-point1": "🕐 3 seconds to find the right section",
+        "hero-point2": "📋 Large instructions and medication names",
+        "hero-point3": "🎥 QR-code video for each scenario",
+        "hero-box-sub": "First minutes aid kit before ambulance arrives",
+        "hero-cell-red-name": "🔴 Anaphylaxis (Difficulty Breathing)",
+        "hero-cell-red-desc": "Suprastin · Prednisolone · Epinephrine",
+        "hero-cell-orange-name": "🟠 Allergy",
+        "hero-cell-orange-desc": "Zyrtec · Suprastin",
+        "hero-cell-blue-name": "🔵 Poisoning",
+        "hero-cell-blue-desc": "Enterosgel · Smecta · Rehydron",
+        "hero-cell-green-name": "🟢 Vomiting",
+        "hero-cell-green-desc": "Cerucal · Domperidone",
+        "hero-cell-purple-name": "🟣 Fever",
+        "hero-cell-purple-desc": "Paracetamol · Ibuprofen",
+        "hero-cell-yellow-name": "🟡 Spasms",
+        "hero-cell-yellow-desc": "No-spa · Spazmalgon",
+        "hero-cell-black-name": "⚫ Loss of Consciousness",
+        "hero-cell-black-desc": "Ammonia · Glucose",
+        "problem-eyebrow": "Why It Matters",
+        "problem-h2": "Critical conditions develop quickly and unexpectedly",
+        "problem-lead": "Help is sometimes needed urgently within 3–5 minutes. Wherever you are — at home, at the country house, in the car, on a trip — an ambulance physically cannot arrive in time. Home first aid kits often have unstructured medications and no simple, clear instructions.",
+        "problem-danger1": "Allergic reaction and swelling",
+        "problem-danger2": "Choking and sudden difficulty breathing",
+        "problem-danger3": "Vomiting, dehydration, poisoning",
+        "problem-danger4": "High fever and spasms",
+        "problem-danger5": "Loss of consciousness and sudden weakness",
+        "timeline-h3": "What usually happens at home",
+        "timeline-badge1": "0–1<br>min",
+        "timeline-step1": "<strong>Panic.</strong> The person is confused and doesn't understand what's happening.",
+        "timeline-badge2": "1–3<br>min",
+        "timeline-step2": "<strong>Searching for medicine.</strong> Nobody remembers where things are or what's needed.",
+        "timeline-badge3": "3–5<br>min",
+        "timeline-step3": "<strong>Risk of worsening.</strong> In critical scenarios, this may already be too late.",
+        "solution-eyebrow": "Solution",
+        "solution-h2": "Structured Safebox for critical situations",
+        "solution-lead": "Each condition has its own color-coded section. Inside — only the necessary medications, large labels, and a brief usage scenario.",
+        "solution-stack1": "<span class=\"dot\" style=\"background: var(--red);\"></span> Large medication names",
+        "solution-stack2": "<span class=\"dot\" style=\"background: var(--orange);\"></span> Step-by-step instructions",
+        "solution-stack3": "<span class=\"dot\" style=\"background: var(--blue);\"></span> Separate sections by scenarios",
+        "solution-stack4": "<span class=\"dot\" style=\"background: var(--green);\"></span> QR codes for short videos",
+        "solution-box-title": "How it looks inside",
+        "solution-box-sub": "Color-coded sections with clear navigation",
+        "sol-cell-red-name": "🔴 Anaphylaxis",
+        "sol-cell-red-desc": "Dangerous allergic reaction",
+        "sol-cell-orange-name": "🟠 Allergy",
+        "sol-cell-orange-desc": "Rash, swelling, reaction to food or medicine",
+        "sol-cell-blue-name": "🔵 Poisoning",
+        "sol-cell-blue-desc": "Intoxication, diarrhea, dehydration",
+        "sol-cell-green-name": "🟢 Vomiting",
+        "sol-cell-green-desc": "Nausea and antiemetic medications",
+        "sol-cell-purple-name": "🟣 Fever",
+        "sol-cell-purple-desc": "Fever reducer",
+        "sol-cell-yellow-name": "🟡 Spasms",
+        "sol-cell-yellow-desc": "Antispasmodics and pain syndrome",
+        "sol-cell-black-name": "⚫ Loss of Consciousness",
+        "sol-cell-black-desc": "Fainting, sudden weakness",
+        "states-eyebrow": "Critical Conditions",
+        "states-h2": "7 scenarios that Safebox should cover at home",
+        "states-lead": "Medications — only large names and what they're for. No overloaded instructions on screen.",
+        "state-anaphylaxis": "🔴 Anaphylaxis",
+        "st-ana-d1": "for severe allergic reaction",
+        "st-ana-d2": "for severe allergy and swelling",
+        "st-ana-d3": "for dangerous allergic reaction",
+        "state-allergy": "🟠 Allergy",
+        "st-all-d1": "for allergy and swelling",
+        "st-all-d2": "for acute allergic reaction",
+        "state-poisoning": "🔵 Poisoning",
+        "st-poi-d1": "for food poisoning",
+        "st-poi-d2": "for intoxication and diarrhea",
+        "st-poi-d3": "restores water and salts",
+        "state-vomiting": "🟢 Vomiting",
+        "st-vom-d1": "stops vomiting",
+        "st-vom-d2": "for nausea and vomiting",
+        "state-fever": "🟣 Fever",
+        "st-fev-d1": "reduces fever",
+        "st-fev-d2": "fever reducer and anti-inflammatory",
+        "state-spasms": "🟡 Spasms",
+        "st-spa-d1": "relieves spasms",
+        "st-spa-d2": "for spasms and pain",
+        "state-unconscious": "⚫ Loss of Consciousness",
+        "st-unc-d1": "brings back consciousness",
+        "st-unc-d2": "for weakness and hypoglycemia",
+        "how-eyebrow": "How to Use Safebox",
+        "how-h2": "Simple algorithm for stressful situations",
+        "how-lead": "No need to remember dozens of instructions. The logic is simple: identify the condition, open the right section, follow the steps.",
+        "how-step1": "<strong>Assess the situation.</strong><br><span class=\"muted\">What's happening: allergy, vomiting, fever, spasms, fainting.</span>",
+        "how-step2": "<strong>Open the right section.</strong><br><span class=\"muted\">Color navigation and large labels help find what you need in seconds.</span>",
+        "how-step3": "<strong>Follow the instructions.</strong><br><span class=\"muted\">The card and QR-video provide a clear action plan.</span>",
+        "design-h3": "Ideal Safebox Design",
+        "design-f1": "White or light gray body — clean and trustworthy feel",
+        "design-f2": "Color-coded sections inside — instant navigation by condition",
+        "design-f3": "Large stickers — visible even in panic",
+        "design-f4": "Minimal text on the box — maximum readability",
+        "design-f5": "QR code on each section — quick access to video",
+        "design-f6": "Organizer form factor — convenient at home, in the car, at the country house",
+        "products-eyebrow": "Safebox Product Line",
+        "products-h2": "Three versions for different budgets and readiness levels",
+        "products-lead": "Product ladder logic: first the guide, then the DIY version, then the premium box with dividers and design.",
+        "p1-tag": "Start",
+        "p1-h3": "Guide",
+        "p1-desc": "PDF instruction for assembling a home Safebox for critical situations.",
+        "p1-i1": "List of medications",
+        "p1-i2": "What each medication is for",
+        "p1-i3": "Clear section structure",
+        "p-btn": "Choose",
+        "p2-tag": "Optimal",
+        "p2-h3": "DIY Safebox",
+        "p2-desc": "A cardboard box that the user assembles and fills with medications.",
+        "p2-i1": "Box and dividers",
+        "p2-i2": "Large stickers by condition",
+        "p2-i3": "Medication list and cards",
+        "p3-tag": "Premium",
+        "p3-h3": "Premium Safebox",
+        "p3-desc": "Plastic organizer with zones, stickers, QR codes, and ready-made storage logic.",
+        "p3-i1": "Divided sections",
+        "p3-i2": "Large labels and navigation",
+        "p3-i3": "QR codes for video by each scenario",
+        "story-eyebrow": "The Story Behind Safebox",
+        "story-quote": "My wife had a severe allergic reaction. She started to become paralyzed, her limbs seized, and she had difficulty breathing. There was Zyrtec in the first aid kit — it helped her wait for the ambulance.",
+        "story-lead": "After that, it became clear: most people have medications at home but no action system. Safebox is an attempt to turn a chaotic home medicine cabinet into a clear emergency tool for the first minutes.",
+        "forwho-eyebrow": "Who It's For",
+        "forwho-h2": "Who Is Safebox For",
+        "forwho-c1": "<span>👨‍👩‍👧‍👦</span>Families with Children",
+        "forwho-c2": "<span>🏡</span>Home &amp; Country House",
+        "forwho-c3": "<span>🚗</span>For the Car",
+        "forwho-c4": "<span>✈️</span>For Travel",
+        "cta-eyebrow": "Final Step",
+        "cta-h2": "Prepare in advance. The first minutes can save a life.",
+        "cta-lead": "Choose a format: guide, DIY Safebox, or the premium emergency box.",
+        "cta-btn": "Build Your Safebox",
+        "footer-copy": "\u00a9 2026 Safebox. Landing page concept to demonstrate the structure, design, and product packaging."
+      }
+    };
+
+    function applyLang(lang) {
+      var t = translations[lang];
+      document.getElementById("htmlRoot").setAttribute("lang", lang);
+      document.title = t["title"];
+      document.querySelectorAll("[data-i18n]").forEach(function(el) {
+        var key = el.getAttribute("data-i18n");
+        if (t[key] !== undefined) {
+          if (t[key].indexOf('<') === -1) {
+            el.textContent = t[key];
+          } else {
+            el.innerHTML = t[key];
+          }
+        }
+      });
+      var btnRu = document.getElementById("btnRu");
+      var btnEn = document.getElementById("btnEn");
+      btnRu.classList.toggle("active", lang === "ru");
+      btnRu.setAttribute("aria-pressed", String(lang === "ru"));
+      btnEn.classList.toggle("active", lang === "en");
+      btnEn.setAttribute("aria-pressed", String(lang === "en"));
+      localStorage.setItem("safebox-lang", lang);
+    }
+
+    function setLang(lang) {
+      applyLang(lang);
+    }
+
+    (function() {
+      var saved = localStorage.getItem("safebox-lang");
+      applyLang(saved === "en" ? "en" : "ru");
+    })();
+  </script>
 </body>
 </html>
