@@ -428,6 +428,27 @@
     }
     .product-card .btn { margin-top: auto; }
 
+    .hero-photo {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .solution-photo {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .product-photo {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 14px;
+    }
+
     .story-box {
       background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
       border: 1px solid rgba(229,57,53,.12);
@@ -588,6 +609,8 @@
         </div>
       </div>
 
+      <img src="d3565cc4-198c-4092-946e-caaff1ac75ad.png" alt="Safebox — аварийная аптечка первых минут" class="hero-photo">
+
       <div class="box-visual">
         <div class="box-lid">
           <div class="box-title">SAFEBOX EMERGENCY KIT</div>
@@ -676,19 +699,22 @@
         </div>
       </div>
 
-      <div class="box-visual">
-        <div class="box-lid">
-          <div class="box-title" data-i18n="solution-box-title">Как это выглядит внутри</div>
-          <div class="box-sub" data-i18n="solution-box-sub">Секции с цветовой кодировкой и понятной навигацией</div>
-        </div>
-        <div class="box-grid">
-          <div class="cell red"><div class="name" data-i18n="sol-cell-red-name">🔴 Анафилаксия</div><div class="desc" data-i18n="sol-cell-red-desc">Опасная аллергическая реакция</div></div>
-          <div class="cell orange"><div class="name" data-i18n="sol-cell-orange-name">🟠 Аллергия</div><div class="desc" data-i18n="sol-cell-orange-desc">Сыпь, отек, реакция на еду или препарат</div></div>
-          <div class="cell blue"><div class="name" data-i18n="sol-cell-blue-name">🔵 Отравление</div><div class="desc" data-i18n="sol-cell-blue-desc">Интоксикация, диарея, обезвоживание</div></div>
-          <div class="cell green"><div class="name" data-i18n="sol-cell-green-name">🟢 Рвота</div><div class="desc" data-i18n="sol-cell-green-desc">Тошнота и противорвотные препараты</div></div>
-          <div class="cell purple"><div class="name" data-i18n="sol-cell-purple-name">🟣 Температура</div><div class="desc" data-i18n="sol-cell-purple-desc">Жаропонижающее</div></div>
-          <div class="cell yellow"><div class="name" data-i18n="sol-cell-yellow-name">🟡 Спазмы</div><div class="desc" data-i18n="sol-cell-yellow-desc">Спазмолитики и болевой синдром</div></div>
-          <div class="cell black" style="grid-column: 1 / -1;"><div class="name" data-i18n="sol-cell-black-name">⚫ Потеря сознания</div><div class="desc" data-i18n="sol-cell-black-desc">Обморок, резкая слабость</div></div>
+      <div class="solution-visual">
+        <img src="db51b20c-5b54-49a0-bba5-083f9997aa78.png" alt="Safebox — как выглядит внутри" class="solution-photo">
+        <div class="box-visual">
+          <div class="box-lid">
+            <div class="box-title" data-i18n="solution-box-title">Как это выглядит внутри</div>
+            <div class="box-sub" data-i18n="solution-box-sub">Секции с цветовой кодировкой и понятной навигацией</div>
+          </div>
+          <div class="box-grid">
+            <div class="cell red"><div class="name" data-i18n="sol-cell-red-name">🔴 Анафилаксия</div><div class="desc" data-i18n="sol-cell-red-desc">Опасная аллергическая реакция</div></div>
+            <div class="cell orange"><div class="name" data-i18n="sol-cell-orange-name">🟠 Аллергия</div><div class="desc" data-i18n="sol-cell-orange-desc">Сыпь, отек, реакция на еду или препарат</div></div>
+            <div class="cell blue"><div class="name" data-i18n="sol-cell-blue-name">🔵 Отравление</div><div class="desc" data-i18n="sol-cell-blue-desc">Интоксикация, диарея, обезвоживание</div></div>
+            <div class="cell green"><div class="name" data-i18n="sol-cell-green-name">🟢 Рвота</div><div class="desc" data-i18n="sol-cell-green-desc">Тошнота и противорвотные препараты</div></div>
+            <div class="cell purple"><div class="name" data-i18n="sol-cell-purple-name">🟣 Температура</div><div class="desc" data-i18n="sol-cell-purple-desc">Жаропонижающее</div></div>
+            <div class="cell yellow"><div class="name" data-i18n="sol-cell-yellow-name">🟡 Спазмы</div><div class="desc" data-i18n="sol-cell-yellow-desc">Спазмолитики и болевой синдром</div></div>
+            <div class="cell black" style="grid-column: 1 / -1;"><div class="name" data-i18n="sol-cell-black-name">⚫ Потеря сознания</div><div class="desc" data-i18n="sol-cell-black-desc">Обморок, резкая слабость</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -849,6 +875,7 @@
 
         <div class="product-card">
           <div class="tag" data-i18n="p3-tag">Премиум</div>
+          <img src="d3565cc4-198c-4092-946e-caaff1ac75ad.png" alt="Safebox — аварийная аптечка первых минут" class="product-photo">
           <h3 style="font-size: 30px; margin-bottom: 8px;" data-i18n="p3-h3">Премиум Safebox</h3>
           <p class="muted" data-i18n="p3-desc">Пластиковый органайзер с зонами, стикерами, QR и готовой логикой хранения.</p>
           <div class="simple-list">
