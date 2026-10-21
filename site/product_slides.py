@@ -20,4 +20,5 @@ def add_product_slides(html, en=False):
     html = html[:start] + block + html[start:]
     if en:
         html += '<dialog class="gallery-dialog" aria-labelledby="gallery-title"><div class="gallery-toolbar"><h2 id="gallery-title">SAFEBOX presentation</h2><button type="button" class="gallery-close" aria-label="Close image">Close ×</button></div><img class="gallery-full" alt=""><div class="gallery-bottom"><button type="button" class="gallery-prev" aria-label="Previous image">←</button><p class="gallery-description" aria-live="polite"></p><button type="button" class="gallery-next" aria-label="Next image">→</button></div><p class="gallery-count" aria-live="polite"></p></dialog><script src="../site/assets/gallery.js" defer></script>'
-    return html
+    from opening_layout import opening
+    return opening(en) + html

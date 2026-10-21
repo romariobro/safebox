@@ -6,3 +6,5 @@
 
 /* Слайды презентации: пропорции и текст исходников сохраняются. */
 .product-slide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.product-slides .gallery-card img{width:100%;height:auto;aspect-ratio:600/335;object-fit:contain;background:#f4f3ed}.product-slides .gallery-card{padding:0;overflow:hidden}.product-slides .caption{margin-top:22px;max-width:960px}@media(max-width:760px){.product-slide-grid{grid-template-columns:1fr;gap:16px}}
+
+.updated-layouts{width:100%;background:#fff}.updated-layouts>a{display:block;max-width:1920px;margin:0 auto}.updated-layouts img{display:block;width:100%;height:auto}.updated-layouts a:focus-visible{outline:3px solid #d22b20;outline-offset:-3px}

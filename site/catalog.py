@@ -18,10 +18,22 @@ def extend_catalog(content, en=False):
   ('medicines',t('Список лекарств и расчёт стоимости','Medicine list and cost estimate'),t('Через партнёров / консьерж-сервис','Through partners / concierge service'),t('Согласованный с врачом список, количество упаковок и расчёт общей суммы по предложениям аптек. Лекарства, доставка и стоимость сервиса учитываются отдельно. Партнёры и канал заказа пока не подключены.','A clinician-reviewed list, pack quantities and total based on pharmacy offers. Medicines, delivery and service fees are shown separately. Partners and ordering are not connected yet.')),
  ]
  title=t('Что можно получить в SAFEBOX','What SAFEBOX offers')
- cards='<div class="grid">'
+ icons={
+  'guide':'<path d="M7 3h10l5 5v21H7zM17 3v6h5M11 15h7m-7 5h7m-7 5h5"/>',
+  'video':'<rect x="3" y="6" width="26" height="20" rx="4"/><path d="m13 11 8 5-8 5z"/>',
+  'training':'<path d="m2 11 14-7 14 7-14 7zM7 15v8c6 4 12 4 18 0v-8M29 12v11"/>',
+  'cardboard':'<path d="m3 10 13-7 13 7v15l-13 5-13-5zM3 10l13 6 13-6M16 16v14M9 7l13 6"/>',
+  'plastic':'<rect x="3" y="9" width="26" height="19" rx="4"/><path d="M11 9V4h10v5M3 16h26M16 19v6m-3-3h6"/>',
+  'car':'<path d="m5 12 3-7h16l3 7M3 23v-9l3-2h20l3 2v9zM6 23v4m20-4v4M7 17h4m10 0h4"/>',
+  'book':'<path d="M16 7C11 3 6 4 2 6v22c5-2 10-2 14 1 4-3 9-3 14-1V6c-4-2-9-3-14 1zM16 7v22M6 11h6m-6 5h6m8-5h6m-6 5h6"/>',
+  'marker':'<path d="m5 22 16-17 6 6-16 17H5zM18 8l6 6M5 28h22"/>',
+  'library':'<rect x="3" y="3" width="9" height="9" rx="1"/><rect x="20" y="3" width="9" height="9" rx="1"/><rect x="3" y="20" width="9" height="9" rx="1"/><path d="M20 20h5v5h4v4h-9zM16 3v9m-1 4h14M3 16h9M16 21v8"/>',
+  'cards':'<rect x="8" y="7" width="21" height="23" rx="3"/><path d="M5 25H3V2h21v2M18 12v8m-4-4h8M13 25h11"/>',
+  'medicines':'<path d="m6 25 12-18a7 7 0 0 1 11 8L17 29A7 7 0 0 1 6 25zM12 16l11 7M4 4h8M8 1v7"/>'}
+ cards='<div class="offer-list">' 
  for key,name,price,desc in items:
   action=(f'<a class="btn primary" href="free-guide.html" download="SAFEBOX-guide.html">{t("Скачать бесплатно ↓","Download free ↓")}</a><a href="free-guide.html">{t("Открыть и распечатать","Open and print")}</a>' if key=='guide' else f'<a class="btn" href="qr-library.html">{t("Открыть библиотеку","Open library")} ↗</a>' if key=='library' else f'<a class="btn" href="choose.html?offer={key}#offer-selection">{t("Добавить в подборку","Add to selection")} ↗</a>')
-  cards+=f'<article class="card" id="offer-{key}"><span class="badge">{price}</span><h3>{name}</h3><p>{desc}</p>{action}</article>'
+  cards+=f'<article class="offer-row" id="offer-{key}"><div class="offer-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{icons[key]}</svg></div><div class="offer-body"><span class="badge">{price}</span><h3>{name}</h3><p>{desc}</p></div><div class="offer-actions">{action}</div></article>'
  cards+='</div>'
  notice=t('Бокс, обучение, печатные материалы и лекарственная часть показаны отдельно. Мы пока не заявляем, что книжка, маркер, карточки или платный доступ входят в цену каждого бокса. Цены и комплекты будут зафиксированы до начала продаж.','Storage, training, printed materials and medicines are listed separately. A booklet, marker, cards or paid access are not currently promised as part of every box. Prices and bundles will be confirmed before sales.')
  catalog=section(f'<div class="section-head"><div><div class="eyebrow">SAFEBOX / {t("Каталог","Catalogue")}</div><h2>{title}</h2></div></div><p class="lead">{t("Начните бесплатно. Добавьте обучение, удобный бокс и нужные материалы.","Start free. Add training, a storage format and the materials you need.")}</p>'+cards+f'<div class="notice">{notice}</div>')
