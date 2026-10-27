@@ -121,6 +121,8 @@ from catalog import extend_catalog
 extend_catalog(content)
 from product_slides import add_product_slides
 content['index'] = add_product_slides(content['index'])
+from story_slider import combine_stories
+content['index'] = combine_stories(content['index'])
 
 def render(slug,title,body):
  home_assets='<link rel="stylesheet" href="assets/home.css"><link rel="stylesheet" href="assets/opening.css"><link rel="stylesheet" href="assets/reference.css"><script src="assets/gallery.js" defer></script>' if slug=='index' else ''

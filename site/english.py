@@ -72,6 +72,8 @@ def build_english(root):
  extend_catalog(content, en=True)
  from product_slides import add_product_slides
  content['index'] = add_product_slides(content['index'], en=True)
+ from story_slider import combine_stories
+ content['index'] = combine_stories(content['index'], en=True)
  for slug,title in PAGES:
   nav=''.join(f'<a href="{s}.html"'+(' aria-current="page"' if slug==s else '')+f'>{t}</a>' for s,t in [('why','Why SAFEBOX'),('how-it-works','How it works'),('products','Products'),('about','About'),('qr-library','Library'),('partners','Partners')])
   foot=''.join('<div><h3>'+label+'</h3>'+''.join(f'<a href="{s}.html">{t}</a>' for s,t in items)+'</div>' for label,items in [('System',PAGES[1:5]),('For you',[PAGES[i] for i in [5,6,8,9]]),('Together',[PAGES[i] for i in [7,10,11]]),('Library',PAGES[12:])])
